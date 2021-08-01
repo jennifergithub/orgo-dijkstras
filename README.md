@@ -6,3 +6,5 @@ To-Do List:
 - Refactor createDirectedGraph
 - Change all the data of vertices to lowercase and add that .toLowerCase() method somewhere
 - Consider regiochemistry and stereochemistry
+- Upload other relevant classes: Edge, Vertex, Graph, etc.
+- Update imports so it's not *
