@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orgo Synthesis Solver | About</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1 style="margin-top: 3vh;">About</h1>
+    <div id="nav-bar">
+        <ul>
+          <li><a href="index.html">Solver</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="map.html">Map</a></li>
+        </ul>
+    </div>
+    <div class="about">
+        <p>Hello! This website is built for rudimentary, one- to four-step synthesis problems in introductory organic chemistry courses. Please stay tuned for updates, including stereochemical/regiochemical outcomes, mechanism names, a visual map, and more reagents!</p>
+        <p>Note that depending on what you choose as your starting reagent, you may get a lot of "Path not found!". Also, since this is intended for introductory courses only, some synthetic pathways may seem a bit long-winded when there may be other shorter ways we haven't learned about yet.</p>
+        <p>The science behind finding the optimal reaction pathway comes from Dijkstra's algorithm. Dijkstra's takes in a weighted, directed graph and calculates the shortest path from a starting vertex (the starting reagent) to every other vertex in the graph. From there, the algorithm can find all the intermediates.</p>
+    </div>
+</body>
+</html>
