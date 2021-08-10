@@ -18,28 +18,17 @@
         <li><a href="map.html">Map</a></li>
       </ul>
     </div>
-    <div id="scroll-nav-bar">
-      <img src="logo.png" alt="logo" id="logo" />
-
-      <ul>
-          <li><a href="index.html">Solver</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="map.html">Map</a></li>
-      </ul>
-
-      <div id="brand">JENNIFER DENG</div>
-    </div>
   </div>
     <div class="wrapper">
         <div class="reagents">
             <h2>Reagents</h2>
             <ul>
-                <li><button>Alkyl halide</button></li>
+                <li><button class="primarysec">Alkyl halide</button></li>
                 <li><button>Alkane</button></li>
                 <li><button>Vicinal dihalide</button></li>
                 <li><button>Geminal dihalide</button></li>
                 <li><button>Methanol</button></li>
-                <li><button>Alcohol</button></li>
+                <li><button class="primarysec" id="alcoholreagent">Alcohol</button></li>
                 <li><button>Epoxide</button></li>
                 <li><button>Alkene</button></li>
                 <li><button>Alkyne</button></li>
@@ -52,17 +41,60 @@
                 <li><button>Alkynide ion</button></li>
             </ul>
         </div>
+        <div class="considerations">
+          <h2>Considerations</h2>
+          <p>These considerations are only available if relevant, based on your selections. Note that most apply to the product.</p>
+          <div class="considerations-inner">
+            <div class="stereochemistry">
+              <h3>Stereochemistry:</h3>
+              <ul>
+                <li><button class="btn inactive" disabled="disabled">Syn</button></li>
+                <li><button class="btn inactive" disabled="disabled">Anti</button></li>
+              </ul>
+            </div>
+            <div class="regiochemistry">
+              <h3>Regiochemistry:</h3>
+              <ul>
+                <li><button class="btn inactive" disabled="disabled">Zaitsev</button></li>
+                <li><button class="btn inactive" disabled="disabled">Hofmann</button></li>
+                <li><button class="btn inactive" disabled="disabled">Markovnikov</button></li>
+                <li><button class="btn inactive" disabled="disabled">Anti-Markovnikov</button></li>
+              </ul>
+            </div>
+            <div class="structural">
+              <h3>Structural:</h3>
+              <div class="structural-product">
+                <ul>
+                  <li><button class="btn inactive" disabled="disabled">1°</button></li>
+                  <li><button class="btn inactive" disabled="disabled">2°</button></li>
+                  <li><button class="btn inactive" disabled="disabled">3°</button></li>
+                </ul>
+              </div>
+              <div class="structural-reagent">
+                <p>Reagent:</p>
+                <ul>
+                  <li><button class="btn inactive" disabled="disabled">1°</button></li>
+                  <li><button class="btn inactive" disabled="disabled">2°</button></li>
+                  <li><button class="btn inactive" disabled="disabled">3°</button></li>
+                  <li><button class="btn inactive" disabled="disabled">Allylic</button></li>
+                  <li><button class="btn inactive" disabled="disabled">Benzylic</button></li>
+                  <li><button class="btn inactive" disabled="disabled">Propargylic</button></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="products">
             <h2>Products</h2>
             <ul>
-              <li><button>Alkyl halide</button></li>
+              <li><button class="primarysecprod">Alkyl halide</button></li>
               <li><button>Alkane</button></li>
               <li><button>Vicinal dihalide</button></li>
               <li><button>Geminal dihalide</button></li>
               <li><button>Methanol</button></li>
-              <li><button>Alcohol</button></li>
+              <li><button class="primarysecprod">Alcohol</button></li>
               <li><button>Epoxide</button></li>
-              <li><button>Alkene</button></li>
+              <li><button id="alkene">Alkene</button></li>
               <li><button>Alkyne</button></li>
               <li><button>Cyclopropane</button></li>
               <li><button>Chloroform</button></li>
@@ -78,12 +110,13 @@
               <li><button>Cyclohexene</button></li>
               <li><button>Alkynide ion</button></li>
               <li><button>Extended alkyne</button></li>
+              <li><button>Sulfonate ester</button></li>
             </ul>
         </div>
     </div>
     <div class="result">
-      <button id="go">Go</button>
-      <button id="reset">Reset</button>
+      <button id="goBtn">Go</button>
+      <button id="resetBtn">Reset</button>
       <div class="result-wrapper">
         <p id="result"><strong>Result:</strong></p>
         <p id="finalResult"></p>
