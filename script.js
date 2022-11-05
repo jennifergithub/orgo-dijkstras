@@ -24,7 +24,7 @@ $(document).ready(function () {
         productButton = $(this).text();
     })
 
-    // for reagent alcohol/HX settings:
+    // for structural alcohol/HX reagent settings:
 
     $(".primarysec").click(function() { // enable buttons
         $(".structural-reagent button:contains('1°')").prop("disabled", false);
@@ -58,7 +58,7 @@ $(document).ready(function () {
         addConsiderationR = null;
     })
 
-    // for product alcohol/HX settings:
+    // for structural alcohol/HX product settings:
 
     $(".primarysecprod").click(function() {
         $(".structural-product button:contains('1°')").prop("disabled", false);
@@ -114,6 +114,31 @@ $(document).ready(function () {
         $(".regiochemistry button:contains('Zaitsev')").prop("disabled", true);
         $(".regiochemistry button:contains('Hofmann')").prop("disabled", true);
         finalProductNew = null;
+    })
+
+    // for Markovnikov or anti-Markovnikov
+
+    $(".primarysecprod").click(function() { // enable Markovnikov and anti-Markovnikov options
+        $(".regiochemistry button:contains('Markovnikov')").prop("disabled", false);
+        $(".regiochemistry button:contains('Anti-Markovnikov')").prop("disabled", false);
+    })
+
+    $(".regiochemistry button:contains('Markovnikov')").click(function() {
+        $(this).removeClass("inactive").addClass("active");
+        $(".regiochemistry button").not(this).removeClass("active").addClass("inactive");
+        addConsiderationP = $(this).text();
+    })
+
+    $(".regiochemistry button:contains('Anti-Markovnikov')").click(function() {
+        $(this).removeClass("inactive").addClass("active");
+        $(".regiochemistry button").not(this).removeClass("active").addClass("inactive");
+        addConsiderationP = $(this).text();;
+    })
+
+    $(".products button").not(".primarysecprod").click(function() { // disable Markovnikov and anti-Markovnikov options
+        $(".regiochemistry button:contains('Markovnikov')").prop("disabled", true);
+        $(".regiochemistry button:contains('Anti-Markovnikov')").prop("disabled", true);
+        addConsiderationP = null;
     })
 
     // for generating result with Go button
@@ -250,7 +275,7 @@ class PriorityQueue {
 
 
 let map = new Graph();
-map.addNodes(["Alkyl halide", "Alkane", "Vicinal dihalide", "Geminal dihalide", "Methanol", "Alcohol", "Epoxide", "Alkene", "Alkyne", "Cyclopropane", "Chloroform", "Diiodomethane", "Alkylborane", "Conjugated diene", "Ether", "Halohydrin", "Diol", "Carboxylic acid", "Dichlorocarbene", "Carbenoid", "Cyclohexene", "Alkynide ion", "Extended alkyne", "1° Alcohol", "1° Alkyl halide", "2° Alcohol", "2° Alkyl halide", "3° Alcohol", "3° Alkyl halide", "Zaitsev product", "Hofmann product", "Kinetic product", "Thermodynamic product", "Syn", "Anti", "Allylic Alcohol", "Benzylic Alcohol", "Propargylic Alcohol", "Sulfonate ester"]);
+map.addNodes(["Alkyl halide", "Alkane", "Vicinal dihalide", "Geminal dihalide", "Methanol", "Alcohol", "Epoxide", "Alkene", "Alkyne", "Cyclopropane", "Chloroform", "Diiodomethane", "Alkylborane", "Conjugated diene", "Ether", "Halohydrin", "Diol", "Carboxylic acid", "Dichlorocarbene", "Carbenoid", "Cyclohexene", "Alkynide ion", "Extended alkyne", "1° Alcohol", "1° Alkyl halide", "2° Alcohol", "2° Alkyl halide", "3° Alcohol", "3° Alkyl halide", "Zaitsev product", "Hofmann product", "Syn", "Anti", "Allylic Alcohol", "Benzylic Alcohol", "Propargylic Alcohol", "Sulfonate ester", "Ketone", "Acetal", "Anti-Markovnikov Alkyl halide", "Markovnikov Alkyl halide", "Anti-Markovnikov Alcohol", "Markovnikov Alcohol", "Vinyl halide", "Aldehyde", "Acyl chloride", "Ester", "Anhydride", "Nitrile", "Amide", "Amine"]);
 map.addEdges([
     "Alkyl halide--Alkene--1--base or nucleophile with heat", 
     "Alkane--Alkyl halide--1--X-X with light", 
@@ -262,7 +287,7 @@ map.addEdges([
     "Alkene--Alkane--1--H2 with Pt/C or Pd/C", 
     "Alkene--Vicinal dihalide--1--X-X in non-nucleophilic solvent", 
     "Alkene--Halohydrin--1--X-X in water", 
-    "Alkene--Alcohol--1--H2O, catalytic HA or Hg(OAc)2 (Markov) or B2H6 (anti-Markov)", 
+    "Alkene--Alcohol--1--H2O, catalytic HA or Hg(OAc)2 (Markov) or BH3:THF (anti-Markov)", 
     "Alkene--Cyclopropane--1--carbene or carbenoid", 
     "Alkene--Diol--1--OsO4", 
     "Alkyne--Alkane--1--H2 with Pt/C or Pd/C, Ra-Ni", 
@@ -280,6 +305,9 @@ map.addEdges([
     "Alkyne--Alkene--1--H2 with LC or Na reduction", 
     "1° Alcohol--1° Alkyl halide--1--SOCl2 for chloride, PBr3 for bromide, or HX", 
     "1° Alkyl halide--Hofmann product--1--Strong bulky base with heat", 
+    "1° Alkyl halide--Alkene--1--Strong bulky base with heat",
+    "2° Alkyl halide--Alkene--1--Strong bulky base with heat",
+    "3° Alkyl halide--Alkene--1--Strong bulky base with heat", 
     "2° Alkyl halide--Zaitsev product--1--Weak nucleophile with heat", 
     "2° Alkyl halide--Zaitsev product--1--Strong base with heat", 
     "3° Alkyl halide--Zaitsev product--1--Weak or strong base with heat", 
@@ -297,7 +325,44 @@ map.addEdges([
     "2° Alcohol--Alkene--1--Strong conc. acid and heat", 
     "2° Alcohol--Zaitsev product--1--Strong conc. acid and heat", 
     "3° Alcohol--Zaitsev product--1--Strong conc. acid and heat", 
-    "3° Alcohol--Alkene--1--Strong conc. acid and heat"]);
+    "3° Alcohol--Alkene--1--Strong conc. acid and heat",
+    "Ketone--Acetal--1--Alcohol and hydronium",
+    "Acetal--Ketone--1--Acid",
+    "Ketone--3° Alcohol--1--R-MgX with hydronium",
+    "Ketone--2° Alcohol--1--NaBH4",
+    "Alkene--Anti-Markovnikov Alkyl halide--1--HBr with peroxides",
+    "Alkene--Markovnikov Alkyl halide--1--HX",
+    "Alkene--Markovnikov Alcohol--1--Aqueous acid", 
+    "Alkene--Anti-Markovnikov Alcohol--1--B2H6 with H2O2 or BH3:THF",
+    "Alkyne--Geminal dihalide--2--HX",
+    "Alkyne--Vinyl halide--1--HBr with peroxides",
+    "Acyl chloride--Ketone--1--Cuprate",
+    "Acyl chloride--1° Alcohol--1--LAH and H2O",
+    "Acyl chloride--Carboxylic acid--1--H2O, py",
+    "Carboxylic acid--Acyl chloride--1--SOCl2 or PCl3 or PCl5",
+    "Acyl chloride--Amide--1--NH3 or R-NH2",
+    "Acyl chloride--Ester--1--ROH",
+    "Ester--Carboxylic acid--1--aq. acid or aq. base",
+    "Carboxylic acid--Ester--1--ROH with H2SO4 or RX with K2CO3",
+    "Acyl chloride--3° Alcohol--1--RMgBr with H2O",
+    "Aldehyde--Carboxylic acid--1--Ag2O",
+    "1° Alcohol--Carboxylic acid--1--KMnO4, -OH, heat",
+    "Acyl chloride--1° Alcohol--1--LAH and H2O",
+    "Acyl chloride--Aldehyde--1--LiAlH(tBuO)3, H3O+",
+    "Ester--1° Alcohol--1--LAH and H2O",
+    "Anhydride--Ester--1--ROH and DMAP",
+    "Carboxylic acid--Amide--1--NH3 and DCC",
+    "Amide--Carboxylic acid--1--aq. acid or aq. base",
+    "Carboxylic acid--Anhydride--1--Acyl chloride",
+    "Anhydride--Amide--1--NH3 or R-NH2",
+    "Nitrile--Carboxylic acid--1--H3O+, heat",
+    "Amide--Nitrile--1--P2O5",
+    "Nitrile--Amide--1--aq. acid or aq. base",
+    "Nitrile--Amine--1--LAH, H3O+",
+    "Amide--Amine--1--LAH, H3O+",
+    "Amine--Amide--1--Acyl chloride",
+    "Nitrile--Aldehyde--1--DIBAL-H, H3O+",
+    "Nitrile--Ketone--1--RMgBr"]);
 console.log(map.findPathWithDijkstra("1° Alcohol", "1° Alkyl halide"));
 
 

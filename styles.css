@@ -8,6 +8,14 @@ body {
   background-color: rgb(227, 251, 252);
 }
 
+p,
+h1,
+h2,
+h3,
+button {
+  color: rgb(15, 60, 84);
+}
+
 .header {
   /*not in use currently*/
   /*background-color: white;*/
@@ -109,35 +117,85 @@ ul li a:hover {
 }
 
 /* reagents and products */
+
 .wrapper {
-  margin: auto;
-  width: 1200px;
-  overflow: hidden;
+  display: table;
+  width: 100%; /*Optional*/
+  table-layout: fixed; /*Optional*/
+  border-spacing: 10px; /*Optional*/
 }
 
 .reagents {
-  width: 500px;
-  float: left;
+  display: table-cell;
   background-color: #00ff885f;
   padding: 0 20px 20px 20px;
   border: 5px solid rgb(0, 215, 150);
 }
 
-.reagents h2 {
+.reagents h2,
+.products h2 {
   text-align: center;
+  margin: 8px;
+}
+
+.considerations {
+  display: table-cell;
+  background-color: rgb(168, 255, 255);
+  padding: 0 20px 20px 20px;
+  border: 5px solid rgb(120, 198, 196);
+}
+
+.considerations-inner {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.stereochemistry {
+  border: 4px solid rgb(59, 142, 215);
+  background-color: rgb(152, 254, 239);
+}
+
+.regiochemistry {
+  border: 4px solid rgb(59, 168, 215);
+  background-color: rgb(168, 255, 235);
+}
+
+.structural {
+  border: 4px solid rgb(42, 100, 131);
+  background-color: rgb(203, 252, 245);
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.stereochemistry h3,
+.regiochemistry h3,
+.structural h3 {
+  text-align: center;
+  margin: 4px;
+}
+
+.stereochemistry li,
+.regiochemistry li {
+  margin: 7px;
+}
+
+.considerations p {
+  text-align: center;
+  margin: 7px;
+  color: rgb(23, 76, 104);
+}
+
+.considerations h2 {
+  text-align: center;
+  margin: 7px;
 }
 
 .products {
-  overflow: hidden; /*prevents it from wrapping*/
-  float: right;
-  width: 500px;
+  display: table-cell;
   background-color: aquamarine;
   padding: 0 20px 20px 20px;
   border: 5px solid rgb(42, 100, 131);
-}
-
-.products h2 {
-  text-align: center;
 }
 
 button {
@@ -147,13 +205,36 @@ button {
   padding: 5px 5px;
 }
 
-button:hover {
+/*.reagents button:hover,
+.products button:hover,
+#goBtn:hover,
+#resetBtn:hover {
+  background-color: rgb(221, 255, 246) !important;
+  transition: 0.3s;
+}*/
+
+:enabled:hover {
   background-color: rgb(221, 255, 246) !important;
   transition: 0.3s;
 }
 
+:disabled {
+  background-color: rgb(180, 242, 233) !important;
+  opacity: 0.5;
+  cursor: default;
+}
+
+.active {
+  background-color: rgb(220, 249, 244);
+}
+
+.inactive {
+  background-color: rgb(180, 242, 233) !important;
+}
+
 .result {
   margin-top: 5vh;
+  margin-bottom: 5vh;
   text-align: center;
 }
 
