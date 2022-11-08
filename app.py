@@ -1,29 +1,40 @@
+import csv
 import dash
 import dash_cytoscape as cyto
 # import dash_html_components as html
 from dash import html
+from dash.dependencies import Input, Output, State
+# import dash_core_components as dcc
+from dash import dcc
 
 app = dash.Dash(__name__)
 
+styles = {
+    'pre': {
+        'border': 'thin lightgrey solid',
+        'overflowX': 'scroll'
+    }
+}
+
+edge_list = []
+node_list = []
+with open('reaction_map.csv', newline='') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        # print(row)
+        node_list.append(row['\ufeffSource'])
+        if row['End'] not in node_list:
+            node_list.append(row['End'])
+        source_target_label = tuple(
+            (row['\ufeffSource'], row['End'], row['Label']))
+        edge_list.append(source_target_label)
+
 nodes = [
     {
-        'data': {'id': name, 'label': label}
+        'data': {'id': label, 'label': label}
     }
-    for name, label in (
-        ('Acid chloride', 'Acid chloride'),
-        ('Ketone', 'Ketone'),
-        ('Aldehyde', 'Aldehyde'),
-        ('Ester', 'Ester'),
-        ('Anhydride', 'Anhydride'),
-        ('Carboxylic acid', 'Carboxylic acid'),
-        ('Cyanohydrin', 'Cyanohydrin'),
-        ('1° Alcohol', '1° Alcohol'),
-        ('2° Alcohol', '2° Alcohol'),
-        ('3° Alcohol', '3° Alcohol'),
-        ('1° Amide', '1° Amide'),
-        ('2° Amide', '2° Amide'),
-        ('3° Amide', '3° Amide'),
-        ('Acyl azide', 'Acyl azide')
+    for label in (
+        node_list
     )
 ]
 
@@ -31,26 +42,7 @@ edges = [
     {'data': {'id': source+'--'+target+'--'+label, 'source': source,
               'target': target, 'label': label}}
     for source, target, label in (
-        ('Acid chloride', '1° Alcohol', 'LAH, H2O'),
-        ('Acid chloride', 'Ketone', 'Cuprate'),
-        ('Acid chloride', '3° Alcohol', 'Cuprate'),
-        ('Acid chloride', 'Acyl azide', 'NaN3'),
-        ('Acid chloride', '1° Amide', 'NH3'),
-        ('Acid chloride', '3° Amide', 'R2NH'),
-        ('Acid chloride', '2° Amide', 'RNH2'),
-        ('Acid chloride', 'Carboxylic acid', 'H2O, py'),
-        ('Acid chloride', 'Aldehyde', 'LiAlH(tBuO)3, H3O+'),
-        ('Acid chloride', 'Ester', '1° Alcohol'),
-        ('Acid chloride', 'Ester', '2° Alcohol'),
-        ('Acid chloride', 'Ester', '3° Alcohol'),
-        ('Aldehyde', 'Carboxylic acid', 'Ag2O'),
-        ('Aldehyde', 'Carboxylic acid', 'MCPBA'),
-        ('Aldehyde', 'Cyanohydrin', 'HCN'),
-        ('Ester', 'Aldehyde', 'DIBAL-H, H3O+'),
-        ('Ester', 'Carboxylic acid', 'aq. Acid or base'),
-        ('Ester', '1° Alcohol', 'LAH, H2O'),
-        ('Anhydride', 'Carboxylic acid', 'H2O, py'),
-        ('Anhydride', '1° Amide', 'NH3')
+        edge_list
     )
 ]
 
@@ -91,17 +83,54 @@ default_stylesheet = [
     }
 ]
 
+cyto.load_extra_layouts()
+
 app.layout = html.Div(
     children=[
         cyto.Cytoscape(
-            id='output_graph',
-            layout={'name': 'cose'},
+            id='cytoscape-event-callbacks-2',
+            layout={'name': 'cola', 'nodeSpacing': 70},
             style={'width': '100vw', 'height': '100vh'},
             stylesheet=default_stylesheet,
-            elements=elements
-        )
+            elements=elements,
+            # mouseoverEdgeData=edges
+        ),
+        html.P(id='cytoscape-tapNodeData-output'),
+        html.P(id='cytoscape-tapEdgeData-output'),
+        html.P(id='cytoscape-mouseoverNodeData-output'),
+        html.P(id='cytoscape-mouseoverEdgeData-output')
     ],
-    style={'position': 'fixed', 'zIndex': '1', 'width': '99vw', 'height': '99vh'})
+)
+
+
+@app.callback(Output('cytoscape-tapNodeData-output', 'children'),
+              Input('cytoscape-event-callbacks-2', 'tapNodeData'))
+def displayTapNodeData(data):
+    if data:
+        return "You recently clicked/tapped the city: " + data['label']
+
+
+@app.callback(Output('cytoscape-tapEdgeData-output', 'children'),
+              Input('cytoscape-event-callbacks-2', 'tapEdgeData'))
+def displayTapEdgeData(data):
+    if data:
+        return "You recently clicked/tapped the edge between " + \
+               data['source'].upper() + " and " + data['target'].upper()
+
+
+@app.callback(Output('cytoscape-mouseoverNodeData-output', 'children'),
+              Input('cytoscape-event-callbacks-2', 'mouseoverNodeData'))
+def displayTapNodeData(data):
+    if data:
+        return "You recently hovered over the city: " + data['label']
+
+
+@app.callback(Output('cytoscape-mouseoverEdgeData-output', 'children'),
+              Input('cytoscape-event-callbacks-2', 'mouseoverEdgeData'))
+def displayTapEdgeData(data):
+    if data:
+        return "You recently hovered over the edge between " + \
+               data['source'].upper() + " and " + data['target'].upper()
 
 
 if __name__ == '__main__':
