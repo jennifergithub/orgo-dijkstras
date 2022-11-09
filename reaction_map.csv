@@ -31,3 +31,42 @@ Nitrile,Aldehyde,"DIBAL-H, H3O+"
 1° Amide,Nitrile,P2O5 or SOCl2
 Nitrile,1° Amide,NaOH and H2O
 Nitrile,Carboxylic acid,aq. acid or base
+Nitrile,Ketone,Grignard
+Nitrile,1° Amine,"LAH, H2O"
+Alkyl azide,1° Amide,"LAH, H2O"
+1° Amine,Ammonium salt,HA
+1° Amine,Quaternary ammonium salt,Alkyl halide
+1° Amine,1° Amide,Acyl chloride
+2° Amine,2° Amide,Acyl chloride
+1° Amide,1° Amine,"LAH, H2O"
+2° Amide,2° Amine,"LAH, H2O"
+3° Amide,3° Amine,"LAH, H2O"
+Carboxylic acid,Acid chloride,SOCl2 or PCl3 or PCl5
+Carboxylic acid,Anhydride,Acid chloride
+Carboxylic acid,1° Amide,NH3 with DCC
+Carboxylic acid,Ester,1° Alcohol with H2SO4
+Carboxylic acid,Ester,2° Alcohol with H2SO4
+Carboxylic acid,Ester,3° Alcohol with H2SO4
+Phosgene,Urea,1° Amine
+Phosgene,Urea,2° Amine
+Phosgene,Urea,3° Amine
+Phosgene,Chloroformate,1° Alcohol
+Phosgene,Chloroformate,2° Alcohol
+Phosgene,Chloroformate,3° Alcohol
+Chloroformate,Carbamate,1° Amine
+Chloroformate,Carbamate,2° Amine
+Chloroformate,Carbamate,3° Amine
+Benzene,Chlorobenzene,"Cl2, FeCl3"
+Benzene,Nitrobenzene,"HNO3, H2SO4"
+Nitrobenzene,Aniline,SnCl2
+Benzene,Alkylbenzene,"Alkyl halide, Lewis acid"
+Alkylbenzene,Benzoic acid,"KMnO4, -OH, heat"
+Acid chloride,Isocyanate,Alkyl azide
+Isocyanate,Urea,1° Amine
+Isocyanate,Urea,2° Amine
+Isocyanate,Urea,3° Amine
+Isocyanate,1° Amine,H2O
+Isocyanate,Carbamate,1° Alcohol
+Isocyanate,Carbamate,2° Alcohol
+Isocyanate,Carbamate,3° Alcohol
+1° Amide,1° Amine,"Br2, NaOH (note -1 carbon)"

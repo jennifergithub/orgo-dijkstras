@@ -6,21 +6,40 @@ import dash_html_components as html
 import dash_core_components as dcc
 from dash.dependencies import Input, Output
 import csv
+import networkx as nx
 
 app = dash.Dash(__name__)
 
 edge_list = []
+nx_edge_list = []
 node_list = []
 with open('reaction_map.csv', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         # print(row)
-        node_list.append(row['\ufeffSource'])
-        if row['End'] not in node_list:
-            node_list.append(row['End'])
+        source = row['\ufeffSource']
+        target = row['End']
+        label = row['Label']
+        if source not in node_list:
+            node_list.append(source)
+        if target not in node_list:
+            node_list.append(target)
         source_target_label = tuple(
-            (row['\ufeffSource'], row['End'], row['Label']))
+            (source, target, label))
+        edge_for_nx = [source, target]
+        nx_edge_list.append(edge_for_nx)
         edge_list.append(source_target_label)
+
+# create NetworkX object for shortest path
+G = nx.DiGraph()
+G.add_nodes_from(node_list)
+G.add_edges_from(nx_edge_list)
+predecessor_dict = {}
+for node in G.nodes:
+    predecessor_dict[node] = [n for n in G.predecessors(node)]
+# print(G.nodes)
+predecessor_list = predecessor_dict.values()
+print(predecessor_list)
 
 styles = {
     'pre': {
@@ -29,15 +48,25 @@ styles = {
     }
 }
 
+# print(node_list)
+# for node in node_list:
+#     print([n for n in G.predecessors(node)])
+# print(edge_list)
 
 nodes = [
     {
-        'data': {'id': label, 'label': label}
+        'data': {'id': label, 'label': label, 'predecessor': predecessor}
     }
+    # 'predecessors': predecessors
     for label in (
         node_list
     )
+    for predecessor in (
+        predecessor_list
+    )
 ]
+
+# print(nodes)
 
 edges = [
     {'data': {'id': source+'--'+target+'--'+label, 'source': source,
@@ -73,7 +102,8 @@ default_stylesheet = [
         'style': {
             'border-color': 'black',
             'border-opacity': '1',
-            'border-width': '0.075px'
+            'border-width': '0.075px',
+            'label': 'data(label)'
         }
     }
 ]
@@ -114,7 +144,7 @@ app.layout = html.Div([
               Input('cytoscape-event-callbacks-2', 'mouseoverNodeData'))
 def displayTapNodeData(data):
     if data:
-        return "You recently hovered over the node: " + data['label']
+        return "How to get here: " + str(data['predecessor'])
 
 
 @app.callback(Output('cytoscape-mouseoverEdgeData-output', 'children'),
