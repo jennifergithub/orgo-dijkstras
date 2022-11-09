@@ -8,10 +8,8 @@ Acid chloride,3° Amide,R2NH
 Acid chloride,2° Amide,RNH2
 Acid chloride,Carboxylic acid,"H2O, py"
 Acid chloride,Aldehyde,"LiAlH(tBuO)3, H3O+"
-Acid chloride,Ester,1° Alcohol
-Acid chloride,Ester,2° Alcohol
-Acid chloride,Ester,3° Alcohol
-Aldehyde,Carboxylic acid,Ag2O
+Acid chloride,Ester,Alcohol
+Aldehyde,Carboxylic acid,Ag2O or H2CrO4
 Aldehyde,Carboxylic acid,MCPBA
 Aldehyde,Cyanohydrin,HCN
 Ester,Aldehyde,"DIBAL-H, H3O+"
@@ -21,9 +19,7 @@ Anhydride,Carboxylic acid,"H2O, py"
 Anhydride,1° Amide,NH3
 Anhydride,3° Amide,R2NH
 Anhydride,2° Amide,RNH2
-Anhydride,Ester,1° Alcohol
-Anhydride,Ester,2° Alcohol
-Anhydride,Ester,3° Alcohol
+Anhydride,Ester,Alcohol
 Anhydride,1° Amide,NH3
 Anhydride,3° Amide,R2NH
 Anhydride,2° Amide,RNH2
@@ -44,29 +40,23 @@ Alkyl azide,1° Amide,"LAH, H2O"
 Carboxylic acid,Acid chloride,SOCl2 or PCl3 or PCl5
 Carboxylic acid,Anhydride,Acid chloride
 Carboxylic acid,1° Amide,NH3 with DCC
-Carboxylic acid,Ester,1° Alcohol with H2SO4
-Carboxylic acid,Ester,2° Alcohol with H2SO4
-Carboxylic acid,Ester,3° Alcohol with H2SO4
-Phosgene,Urea,1° Amine
-Phosgene,Urea,2° Amine
-Phosgene,Urea,3° Amine
-Phosgene,Chloroformate,1° Alcohol
-Phosgene,Chloroformate,2° Alcohol
-Phosgene,Chloroformate,3° Alcohol
-Chloroformate,Carbamate,1° Amine
-Chloroformate,Carbamate,2° Amine
-Chloroformate,Carbamate,3° Amine
+Carboxylic acid,Ester,Alcohol with H2SO4
+Phosgene,Urea,Amine
+Phosgene,Chloroformate,Alcohol
+Chloroformate,Carbamate,Amine
 Benzene,Chlorobenzene,"Cl2, FeCl3"
 Benzene,Nitrobenzene,"HNO3, H2SO4"
 Nitrobenzene,Aniline,SnCl2
 Benzene,Alkylbenzene,"Alkyl halide, Lewis acid"
 Alkylbenzene,Benzoic acid,"KMnO4, -OH, heat"
 Acid chloride,Isocyanate,Alkyl azide
-Isocyanate,Urea,1° Amine
-Isocyanate,Urea,2° Amine
-Isocyanate,Urea,3° Amine
+Isocyanate,Urea,Amine
 Isocyanate,1° Amine,H2O
-Isocyanate,Carbamate,1° Alcohol
-Isocyanate,Carbamate,2° Alcohol
-Isocyanate,Carbamate,3° Alcohol
+Isocyanate,Carbamate,Alcohol
 1° Amide,1° Amine,"Br2, NaOH (note -1 carbon)"
+Alkene,Carboxylic acid,"KMnO4, -OH, heat"
+Ketone,Ester,MCPBA
+Carboxylic acid,Carboxylate anion,PhLi or any base
+Ketone,2° Alcohol,"LAH,NaBH4,DIBAL-H"
+2° Alcohol,Ketone,"H2CrO4/KMnO4,PCC,Swern"
+1° Alcohol,Carboxylic acid,H2CrO4 or KMnO4

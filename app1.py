@@ -38,8 +38,12 @@ predecessor_dict = {}
 for node in G.nodes:
     predecessor_dict[node] = [n for n in G.predecessors(node)]
 # print(G.nodes)
-predecessor_list = predecessor_dict.values()
-print(predecessor_list)
+predecessor_list = list(predecessor_dict.values())
+new_list = []
+for predecessor in predecessor_list:
+    new_list.append(','.join(predecessor))
+print(new_list)
+
 
 styles = {
     'pre': {
@@ -62,7 +66,7 @@ nodes = [
         node_list
     )
     for predecessor in (
-        predecessor_list
+        new_list
     )
 ]
 
@@ -144,7 +148,7 @@ app.layout = html.Div([
               Input('cytoscape-event-callbacks-2', 'mouseoverNodeData'))
 def displayTapNodeData(data):
     if data:
-        return "How to get here: " + str(data['predecessor'])
+        return "How to get here: " + str(predecessor_dict[data['label']])
 
 
 @app.callback(Output('cytoscape-mouseoverEdgeData-output', 'children'),
