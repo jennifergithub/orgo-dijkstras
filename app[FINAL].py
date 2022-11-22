@@ -9,6 +9,7 @@ import csv
 import networkx as nx
 
 app = dash.Dash(__name__)
+server = app.server
 
 edge_list = []
 nx_edge_list = []
@@ -47,49 +48,39 @@ for predecessor in predecessor_list:
 # print(p)
 
 
-# styles = {
-#     'pre': {
-#         'border': 'thin lightgrey solid',
-#         'overflowX': 'scroll'
-#     }
-# }
+styles = {
+    'pre': {
+        'border': 'thin lightgrey solid',
+        'overflowX': 'scroll'
+    }
+}
 
 # print(node_list)
 # for node in node_list:
 #     print([n for n in G.predecessors(node)])
 # print(edge_list)
-print(len(node_list))
-# app.get_asset_url('ketone.png')
+node_images = ['https://orgosynthesissolver.s3.amazonaws.com/assets/acid_chloride.png',
+               'https://orgosynthesissolver.s3.amazonaws.com/assets/primary_alcohol.png',
+               'https://orgosynthesissolver.s3.amazonaws.com/assets/keton3.png',
+               'https://orgosynthesissolver.s3.amazonaws.com/assets/tert_alcohol.png',
+               'https://orgosynthesissolver.s3.amazonaws.com/assets/acid_azide.png',
+               'https://orgosynthesissolver.s3.amazonaws.com/assets/amine_prim.png',
+               'https://orgosynthesissolver.s3.amazonaws.com/assets/sec_amide.png',
+               'https://orgosynthesissolver.s3.amazonaws.com/assets/tert_amide.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/prim_amide.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/carb_acid.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/alde.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/est.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/cyanohy.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/anhydride.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/nitrile1.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/alkylazide1.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/ammoniumsalt1.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/quatammoniumsalt2.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/sec_amine.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/tert_amine2.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/phosge.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/urea1.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/chloroform.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/carbamate.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/benzen.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/chlorobenzen.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/nitrobenzen.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/aniline1.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/alkylbenzene.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/benzoicacid.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/alkylhalide.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/isocya.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/alkene.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/carboxylate.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/sec_alcohol.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/oxime.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/iminium1.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/amine_4.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/hydrazone1.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/enamine.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/imine1.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/alkylhalide.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/grignard.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/carbonate.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/alphahaloketone1.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/alphahalohalide.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/alphahalocarboacid1.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/methylketone.png', 'https://orgosynthesissolver.s3.amazonaws.com/assets/haloform.png']
 
-node_images = ['./assets/acid_chloride.png',
-               './assets/primary_alcohol.png',
-               './assets/keton3.png',
-               './assets/tert_alcohol.png',
-               './assets/acid_azide.png',
-               './assets/amine_prim.png',
-               './assets/sec_amide.png',
-               './assets/tert_amide.png', './assets/prim_amide.png', './assets/carb_acid.png', './assets/alde.png', './assets/est.png', './assets/cyanohy.png', './assets/anhydride.png', './assets/nitrile1.png', './assets/alkylazide1.png', './assets/ammoniumsalt1.png', './assets/quatammoniumsalt2.png', './assets/sec_amine.png', './assets/tert_amine2.png', './assets/phosge.png', './assets/urea1.png', './assets/chloroform.png', './assets/carbamate.png', './assets/benzen.png', './assets/chlorobenzen.png', './assets/nitrobenzen.png', './assets/aniline1.png', './assets/alkylbenzene.png', './assets/benzoicacid.png', './assets/alkylhalide.png', './assets/isocya.png', './assets/alkene.png', './assets/carboxylate.png', './assets/sec_alcohol.png', './assets/oxime.png', './assets/iminium1.png', './assets/amine_4.png', './assets/hydrazone1.png', './assets/enamine.png', './assets/imine1.png', './assets/alkylhalide.png', './assets/grignard.png', './assets/carbonate.png', './assets/alphahaloketone1.png', './assets/alphahalohalide.png', './assets/alphahalocarboacid1.png', './assets/methylketone.png', './assets/haloform.png']
-
-# print(node_list)
 zipped_node_list = [list(l) for l in zip(node_list, node_images)]
 
 nodes = [
-    {
-        'classes': 'images',
+    {'classes': 'images',
         'data': {'id': label, 'label': label, 'predecessor': predecessor, 'url': url}
-    }
+     }
     # 'predecessors': predecessors
+    # for label in (
+    #     node_list
+    # )
     for label, url in (
-        # ['Ketone', './assets/ketone.png'],
-        # ['1° Alcohol', './assets/primary_alc1.png'],
-        # ['Acid chloride', './assets/primary_alc1.png'],
-        # ['3° Alcohol', './assets/ketone.png'],
-        # ['Acyl azide', './assets/ketone.png']
         zipped_node_list
     )
-    # for url in (
-    #     node_images
-    # )
     for predecessor in (
         new_list
     )
@@ -110,7 +101,7 @@ default_stylesheet = [
         'selector': 'node',
         'style': {
             'background-color': '#BFD7B5',
-            'label': 'data(label)',
+            'label': 'data(label)'
         }
     },
     {
@@ -142,7 +133,6 @@ default_stylesheet = [
             'width': 120,
             'height': 80,
             'background-fit': 'cover',
-            'background-position': 'center',
             'background-image': 'data(url)'
         }
     }

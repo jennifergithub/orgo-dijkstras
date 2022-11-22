@@ -3,33 +3,31 @@ Acid chloride,1° Alcohol,"LAH, H2O"
 Acid chloride,Ketone,Cuprate
 Acid chloride,3° Alcohol,Cuprate
 Acid chloride,Acyl azide,NaN3
-Acid chloride,1° Amide,NH3
-Acid chloride,3° Amide,R2NH
-Acid chloride,2° Amide,RNH2
+Acyl azide,1° Amine,H2O (note -1 carbon)
+Acid chloride,2° Amide,1° Amine
+Acid chloride,3° Amide,2° Amine
+Acid chloride,1° Amide,Ammonia
 Acid chloride,Carboxylic acid,"H2O, py"
 Acid chloride,Aldehyde,"LiAlH(tBuO)3, H3O+"
 Acid chloride,Ester,Alcohol
-Aldehyde,Carboxylic acid,Ag2O or H2CrO4
+Aldehyde,Carboxylic acid,Ag2O or H2CrO4 or KMnO4
 Aldehyde,Carboxylic acid,MCPBA
 Aldehyde,Cyanohydrin,HCN
 Ester,Aldehyde,"DIBAL-H, H3O+"
 Ester,Carboxylic acid,aq. Acid or base
 Ester,1° Alcohol,"LAH, H2O"
 Anhydride,Carboxylic acid,"H2O, py"
-Anhydride,1° Amide,NH3
-Anhydride,3° Amide,R2NH
-Anhydride,2° Amide,RNH2
+Anhydride,1° Amide,Ammonia
+Anhydride,3° Amide,2° Amine
+Anhydride,2° Amide,1° Amine
 Anhydride,Ester,Alcohol
-Anhydride,1° Amide,NH3
-Anhydride,3° Amide,R2NH
-Anhydride,2° Amide,RNH2
 Nitrile,Aldehyde,"DIBAL-H, H3O+"
 1° Amide,Nitrile,P2O5 or SOCl2
 Nitrile,1° Amide,NaOH and H2O
 Nitrile,Carboxylic acid,aq. acid or base
 Nitrile,Ketone,Grignard
 Nitrile,1° Amine,"LAH, H2O"
-Alkyl azide,1° Amide,"LAH, H2O"
+Alkyl azide,1° Amine,"LAH, H2O"
 1° Amine,Ammonium salt,HA
 1° Amine,Quaternary ammonium salt,Alkyl halide
 1° Amine,1° Amide,Acyl chloride
@@ -41,7 +39,7 @@ Carboxylic acid,Acid chloride,SOCl2 or PCl3 or PCl5
 Carboxylic acid,Anhydride,Acid chloride
 Carboxylic acid,1° Amide,NH3 with DCC
 Carboxylic acid,Ester,Alcohol with H2SO4
-Phosgene,Urea,Amine
+Phosgene,Urea,Isocyanate
 Phosgene,Chloroformate,Alcohol
 Chloroformate,Carbamate,Amine
 Benzene,Chlorobenzene,"Cl2, FeCl3"
@@ -49,6 +47,7 @@ Benzene,Nitrobenzene,"HNO3, H2SO4"
 Nitrobenzene,Aniline,SnCl2
 Benzene,Alkylbenzene,"Alkyl halide, Lewis acid"
 Alkylbenzene,Benzoic acid,"KMnO4, -OH, heat"
+1° Alkyl halide,Alkyl azide,NaN3
 Acid chloride,Isocyanate,Alkyl azide
 Isocyanate,Urea,Amine
 Isocyanate,1° Amine,H2O
@@ -60,3 +59,24 @@ Carboxylic acid,Carboxylate anion,PhLi or any base
 Ketone,2° Alcohol,"LAH,NaBH4,DIBAL-H"
 2° Alcohol,Ketone,"H2CrO4/KMnO4,PCC,Swern"
 1° Alcohol,Carboxylic acid,H2CrO4 or KMnO4
+Ketone,Oxime,Hydroxylamine
+Oxime,1° Amine,Na and ethanol
+Ketone,Iminium ion,Amine
+Iminium ion,Amine,NaBH3CN
+Ketone,Hydrazone,Hydrazine
+Ketone,Enamine,2° Amine
+Aldehyde,Enamine,2° Amine
+Ketone,Imine,1° Amine
+Aldehyde,Imine,1° Amine
+Alkyl halide,Grignard,Mg
+Phosgene,Isocyanate,Amine
+Amine,Isocyanate,Phosgene
+Chloroformate,Carbonate,Alcohol
+1° Alcohol,Aldehyde,PCC or Swern
+Ketone,α-haloketone,Dihalide with acid or base
+Carboxylic acid,α-halo acid halide,"PBr3,Br2"
+α-halo acid halide,α-halo carboxylic acid,H2O
+Methyl ketone,Haloform,Dihalide with base
+Methyl ketone,Carboxylic acid,Dihalide with base
+
+

@@ -279,7 +279,7 @@ map.addNodes(["Alkyl halide", "Alkane", "Vicinal dihalide", "Geminal dihalide", 
 map.addEdges([
     "Alkyl halide--Alkene--1--base or nucleophile with heat", 
     "Alkane--Alkyl halide--1--X-X with light", 
-    "Alcohol--Alkyl halide--1--HX", 
+    "Alcohol--Alkyl halide--1--HX or PBr3/SOCl2", // added PBr3/SOCl2
     "Epoxide--Halohydrin--1--HX", 
     "Epoxide--Diol--1--aqueous acid or H2O", 
     "Alkene--Alkyl halide--1--HBr, peroxides (anti-Markov) or HX (Markov)", 
@@ -293,7 +293,8 @@ map.addEdges([
     "Alkyne--Alkane--1--H2 with Pt/C or Pd/C, Ra-Ni", 
     "Vicinal dihalide--Alkyne--3--strong base like NaNH2", 
     "Geminal dihalide--Alkyne--3--strong base like NaNH2", 
-    "Methanol--Alkyl halide--1--HX", "Alkylborane--Alkane--1--Acetic acid and heat",
+    "Methanol--Alkyl halide--1--HX", 
+    "Alkylborane--Alkane--1--Acetic acid and heat",
     "Alkyne--Carboxylic acid--1--Hot KMnO4, OH, H3O+ or O3", 
     "Chloroform--Dichlorocarbene--1--Strong bases like tert-butoxide or NaNH2", 
     "Diiodomethane--Carbenoid--1--Zn(Cu)", 
@@ -326,7 +327,7 @@ map.addEdges([
     "2° Alcohol--Zaitsev product--1--Strong conc. acid and heat", 
     "3° Alcohol--Zaitsev product--1--Strong conc. acid and heat", 
     "3° Alcohol--Alkene--1--Strong conc. acid and heat",
-    "Ketone--Acetal--1--Alcohol and hydronium",
+    "Ketone--Acetal--1--Alcohol and TsOH", // replaced hydronium with TsOH
     "Acetal--Ketone--1--Acid",
     "Ketone--3° Alcohol--1--R-MgX with hydronium",
     "Ketone--2° Alcohol--1--NaBH4",
@@ -362,7 +363,9 @@ map.addEdges([
     "Amide--Amine--1--LAH, H3O+",
     "Amine--Amide--1--Acyl chloride",
     "Nitrile--Aldehyde--1--DIBAL-H, H3O+",
-    "Nitrile--Ketone--1--RMgBr"]);
+    "Nitrile--Ketone--1--RMgBr",
+    "Alcohol--Acetal--1--Ketone and acid", // added this edge
+    "Alkyl borane--Alcohol--H2O2/NaOH"]); // added this last edge
 console.log(map.findPathWithDijkstra("1° Alcohol", "1° Alkyl halide"));
 
 
